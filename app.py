@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 
 # Initialize Gemini API client
-client = genai.Client(api_key="YOUR_GEMINI_API_KEY")
+client = genai.Client(api_key="AIzaSyDchUVEvIC5QQT8KWbA6CFjBAmbrbUcvqg")
 model_id = "gemini-2.0-flash"
 
 # Streamlit UI
@@ -36,7 +36,7 @@ if user_input:
 
     with st.spinner("🪄 Crafting your funky LinkedIn post..."):
         linkedin_prompt = f"""
-        Rewrite the following information into a professional, engaging LinkedIn post suitable for sharing tech updates in a funky way. Add emojis and hashtags:
+        Rewrite the following information into a professional, engaging LinkedIn post suitable for sharing tech updates it should be in a funky way + add emojis linied and add hastages:
         {search_result_text}
         Make it concise, friendly, and informative.
         """
@@ -50,7 +50,7 @@ if user_input:
 
     with st.spinner("🎨 Creating an image prompt..."):
         image_prompt = f"""
-        Based on the following topic and insights {search_result_text}, generate only one image prompt that can be used for a LinkedIn post. 
+        Based on the following topic and insights {search_result_text}, generate only one image prompt that can be used to relevant data for a LinkedIn post. 
         The image should visually reflect the theme and innovations mentioned.
         """
         image_prompt_response = client.models.generate_content(
@@ -63,8 +63,7 @@ if user_input:
 
     with st.spinner("🧠 Generating image from prompt..."):
         final_image_prompt = f"""
-        Generate an image based on the following prompt: {image_prompt_text}. 
-        Make it vivid and professional to match the LinkedIn post.
+        Generate a image based on the following topic and insights {image_prompt_text}, generate a vivid and professional image prompt that can be used to generate a relevant image for a LinkedIn post. The image should visually reflect the theme and innovations mentioned.
         """
         response = client.models.generate_content(
             model="gemini-2.0-flash-preview-image-generation",
